@@ -14,35 +14,23 @@ class Inc2734_WP_SEO_Customizer_Section_Manager {
 		$this->customizer = $customizer;
 
 		$this->_add( 'google-analytics', array(
-			'title' => apply_filters(
-				'inc2734_wp_seo_customizer_section_google_analytics_title',
-				'Google Analytics'
-			)
+			'title' => __( 'Google Analytics', 'inc2734-wp-seo' ),
 		) );
 
 		$this->_add( 'google-search-console', array(
-			'title' => apply_filters(
-				'inc2734_wp_seo_customizer_section_google_search_console_title',
-				'Google Search Console'
-			)
+			'title' => __( 'Google Search Console', 'inc2734-wp-seo' ),
 		) );
 
 		$this->_add( 'ogp', array(
-			'title' => apply_filters(
-				'inc2734_wp_seo_customizer_section_ogp_title',
-				'OGP'
-			)
+			'title' => __( 'OGP', 'inc2734-wp-seo' ),
 		) );
 
 		$this->_add( 'twitter-cards', array(
-			'title' => apply_filters(
-				'inc2734_wp_seo_customizer_section_twitter_cards_title',
-				'Twitter Cards'
+			'title'       => __( 'Twitter Cards', 'inc2734-wp-seo' ),
+			'description' => sprintf(
+				__( 'Application of URL is necessary for using Twitter Cards. %1$s', 'inc2734-wp-seo' ),
+				'<a href="https://cards-dev.twitter.com/validator" target="_blank">Card validator</a>'
 			),
-			'description' => apply_filters(
-				'inc2734_wp_seo_customizer_section_twitter_cards_description',
-				'Application of URL is necessary for using Twitter Cards.'
-			) . '<a href="https://cards-dev.twitter.com/validator" target="_blank">Card validator</a>',
 		) );
 	}
 

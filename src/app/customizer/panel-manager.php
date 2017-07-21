@@ -14,10 +14,7 @@ class Inc2734_WP_SEO_Customizer_Panel_Manager {
 		$this->customizer = $customizer;
 
 		$this->_add( 'seo', array(
-			'title' => apply_filters(
-				'inc2734_wp_seo_customizer_panel_seo_title',
-				'SEO'
-			),
+			'title' => __( 'SEO', 'inc2734-wp-seo' ),
 		) );
 	}
 

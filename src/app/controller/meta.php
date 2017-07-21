@@ -27,7 +27,7 @@ class Inc2734_WP_SEO_Meta {
 
 		add_meta_box(
 			'wp-seo',
-			apply_filters( 'wp_seo_meta_box_label', 'SEO' ),
+			__( 'SEO', 'inc2734-wp-seo' ),
 			array( $this, '_wp_seo_meta_box' ),
 			$post_type,
 			'normal'
@@ -45,7 +45,7 @@ class Inc2734_WP_SEO_Meta {
 		<?php wp_nonce_field( 'wp-seo-meta-box-action', 'wp-seo-meta-box-nonce' ); ?>
 		<p>
 			<label for="wp-seo-meta-description">
-				<?php echo esc_html( apply_filters( 'wp_seo_meta_box_meta_description_label', 'Meta description' ) ); ?>
+				<?php esc_html_e( 'Meta description', 'inc2734-wp-seo' ); ?>
 			</label>
 			<input
 				type="text"

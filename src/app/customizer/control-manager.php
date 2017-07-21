@@ -14,62 +14,39 @@ class Inc2734_WP_SEO_Customizer_Control_Manager {
 		$this->customizer = $customizer;
 
 		$this->_add( 'text', 'google-analytics-tracking-id', array(
-			'label' => apply_filters(
-				'inc2734_wp_seo_customizer_control_google_analytics_tracking_id_label',
-				'Tracking ID'
-			),
-			'description' => apply_filters(
-				'inc2734_wp_seo_customizer_control_google_analytics_tracking_id_description',
-				'e.g. UA-1111111-11'
-			),
+			'label'       => __( 'Tracking ID', 'inc2734-wp-seo' ),
+			'description' => __( 'e.g. UA-1111111-11', 'inc2734-wp-seo' ),
 		) );
 
 		$this->_add( 'text', 'google-site-verification', array(
-			'label' => apply_filters(
-				'inc2734_wp_seo_customizer_control_google_site_verification_label',
-				'Google site verification'
-			),
-			'description' => apply_filters(
-				'inc2734_wp_seo_customizer_control_google_site_verification_description',
-				'Please enter part <code>xxxx</code> of <code>&lt;meta name="google-site-verification" content="xxxxx" /&gt;</code>'
+			'label'       => __( 'Google site verification', 'inc2734-wp-seo' ),
+			'description' => sprintf(
+				__( 'Please enter part %1$s of %2$s', 'inc2734-wp-seo' ),
+				'<code>xxxx</code>',
+				'<code>&lt;meta name="google-site-verification" content="xxxxx" /&gt;</code>'
 			),
 		) );
 
 		$this->_add( 'image', 'default-og-image',array(
-			'label' => apply_filters(
-				'inc2734_wp_seo_customizer_control_default_og_image_label',
-				'Default OGP image'
-			),
-			'description' => apply_filters(
-				'inc2734_wp_seo_customizer_control_default_og_image_description',
-				'If a featured image is set in an article, that the featured image is used, if not set, this image will be used.'
-			),
+			'label'       => __( 'Default OGP image', 'inc2734-wp-seo' ),
+			'description' => __( 'If a featured image is set in an article, that the featured image is used, if not set, this image will be used.', 'inc2734-wp-seo' ),
 		) );
 
 		$this->_add( 'select', 'twitter-card',array(
-			'label' => apply_filters(
-				'inc2734_wp_seo_customizer_control_twitter_card_label',
-				'twitter:card'
-			),
-			'description' => apply_filters(
-				'inc2734_wp_seo_customizer_control_twitter_card_description',
-				'Twitter Cards format'
-			),
-			'default' => 'summary',
-			'choices' => array(
+			'label'       => __( 'twitter:card', 'inc2734-wp-seo' ),
+			'description' => __( 'Twitter Cards format', 'inc2734-wp-seo' ),
+			'default'     => 'summary',
+			'choices'     => array(
 				'summary'             => 'Summary Card',
 				'summary_large_image' => 'Summary Card with Large Image',
 			),
 		) );
 
 		$this->_add( 'text', 'twitter-site',array(
-			'label' => apply_filters(
-				'inc2734_wp_seo_customizer_control_twitter_site_label',
-				'twitter:site'
-			),
-			'description' => apply_filters(
-				'inc2734_wp_seo_customizer_control_twitter_site_description',
-				'The Twitter account name of the site. Please enter in the form <code>@username</code>.'
+			'label'       => __( 'twitter:site', 'inc2734-wp-seo' ),
+			'description' => sprintf(
+				__( 'The Twitter account name of the site. Please enter in the form %1$s.', 'inc2734-wp-seo' ),
+				'<code>@username</code>'
 			),
 			'default' => '@',
 		) );

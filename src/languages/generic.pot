@@ -1,0 +1,82 @@
+# Copyright (C) 2017 {package-name}
+# This file is distributed under the same license as the {package-name} package.
+msgid ""
+msgstr ""
+"Project-Id-Version:  \n"
+"Report-Msgid-Bugs-To: https://make.wordpress.org/polyglots/\n"
+"POT-Creation-Date: 2017-07-21 00:25:43+00:00\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"PO-Revision-Date: 2017-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+
+#: app/controller/customizer.php:14 app/controller/meta.php:30
+#: app/customizer/panel-manager.php:17
+msgid "SEO"
+msgstr ""
+
+#: app/controller/customizer.php:18 app/customizer/section-manager.php:17
+msgid "Google Analytics"
+msgstr ""
+
+#: app/controller/customizer.php:22 app/customizer/section-manager.php:21
+msgid "Google Search Console"
+msgstr ""
+
+#: app/controller/customizer.php:26 app/customizer/section-manager.php:25
+msgid "OGP"
+msgstr ""
+
+#: app/controller/customizer.php:30 app/customizer/section-manager.php:29
+msgid "Twitter Cards"
+msgstr ""
+
+#: app/controller/customizer.php:32 app/customizer/section-manager.php:31
+msgid "Application of URL is necessary for using Twitter Cards. %1$s"
+msgstr ""
+
+#: app/controller/customizer.php:38 app/customizer/control-manager.php:17
+msgid "Tracking ID"
+msgstr ""
+
+#: app/controller/customizer.php:39 app/customizer/control-manager.php:18
+msgid "e.g. UA-1111111-11"
+msgstr ""
+
+#: app/controller/customizer.php:43 app/customizer/control-manager.php:22
+msgid "Google site verification"
+msgstr ""
+
+#: app/controller/customizer.php:45 app/customizer/control-manager.php:24
+msgid "Please enter part %1$s of %2$s"
+msgstr ""
+
+#: app/controller/customizer.php:52 app/customizer/control-manager.php:31
+msgid "Default OGP image"
+msgstr ""
+
+#: app/controller/customizer.php:53 app/customizer/control-manager.php:32
+msgid "If a featured image is set in an article, that the featured image is used, if not set, this image will be used."
+msgstr ""
+
+#: app/controller/customizer.php:57 app/customizer/control-manager.php:36
+msgid "twitter:card"
+msgstr ""
+
+#: app/controller/customizer.php:58 app/customizer/control-manager.php:37
+msgid "Twitter Cards format"
+msgstr ""
+
+#: app/controller/customizer.php:67 app/customizer/control-manager.php:46
+msgid "twitter:site"
+msgstr ""
+
+#: app/controller/customizer.php:69 app/customizer/control-manager.php:48
+msgid "The Twitter account name of the site. Please enter in the form %1$s."
+msgstr ""
+
+#: app/controller/meta.php:48
+msgid "Meta description"
+msgstr ""

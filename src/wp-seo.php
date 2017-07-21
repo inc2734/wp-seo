@@ -36,6 +36,8 @@ if ( ! class_exists( 'Inc2734_WP_OGP' ) ) {
 class Inc2734_WP_SEO {
 
 	public function __construct() {
+		load_textdomain( 'inc2734-wp-seo', __DIR__ . '/languages/' . get_locale() . '.mo' );
+
 		new Inc2734_WP_SEO_Meta();
 		new Inc2734_WP_SEO_Customizer();
 	}
