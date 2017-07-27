@@ -22,35 +22,61 @@ $ composer require inc2734/wp-seo
 include_once( get_theme_file_path( '/vendor/inc2734/wp-seo/src/wp-seo.php' ) );
 new Inc2734_WP_SEO();
 
-// Get meta description
-$meta_description = get_post_meta( get_the_ID(), 'wp-seo-meta-description', true );
-
-// Get Google Analytics tracking ID
-$tracking_id = get_theme_mod( 'google-analytics-tracking-id' );
-
-// Get meta google-site-verification
-$google_site_verification = get_theme_mod( 'google-site-verification' );
-
-// Get default og:image URL
-$default_og_image = get_theme_mod( 'default-og-image' );
-
-// OGP
-add_action( 'wp_head', function() {
-	$ogp = new Inc2734_WP_OGP();
-	?>
-	<meta property="og:title" content="<?php echo esc_attr( $ogp->get_title() ); ?>">
-	<meta property="og:type" content="<?php echo esc_attr( $ogp->get_type() ); ?>">
-	<meta property="og:url" content="<?php echo esc_attr( $ogp->get_url() ); ?>">
-	<meta property="og:image" content="<?php echo esc_attr( $ogp->get_image() ); ?>">
-	<meta property="og:site_name" content="<?php echo esc_attr( $ogp->get_site_name() ); ?>">
-	<meta property="og:description" content="<?php echo esc_attr( $ogp->get_description() ); ?>">
-	<meta property="og:locale" content="<?php echo esc_attr( $ogp->get_locale() ); ?>">
-	<?php
+/**
+ * Google Analytics Tracking ID
+ *
+ * @param string $tracking_id
+ * @return string
+ */
+add_filter( 'inc2734_wp_seo_google_analytics_tracking_id', function( $tracking_id ) {
+	return $tracking_id;
 } );
 
-// Get twitter:card
-$twitter_card = get_theme_mod( 'twitter-card' );
+/**
+ * Google Site Verification
+ *
+ * @param string $google_site_verification
+ * @return string
+ */
+add_filter( 'inc2734_wp_seo_google_site_verification', function( $google_site_verification ) {
+	return $google_site_verification;
+} );
 
-// Get twitter:site
-$twitter_site = get_theme_mod( 'twitter-site' );
+/**
+ * Default og:image
+ *
+ * @param string $default_ogp_image_url
+ * @return string
+ */
+add_filter( 'inc2734_wp_seo_defult_ogp_image_url', function( $default_ogp_image_url ) {
+	return $default_ogp_image_url;
+} );
+
+/**
+ * When you want to print ogp meta tags, return true
+ *
+ * @param bool false
+ * @return bool
+ */
+add_filter( 'inc2734_wp_seo_ogp', '__return_true' );
+
+/**
+ * twitter:card
+ *
+ * @param string $twitter_card
+ * @return string
+ */
+add_filter( 'inc2734_wp_seo_twitter_card', function( $twitter_card ) {
+	return $twitter_card;
+} );
+
+/**
+ * twitter:site
+ *
+ * @param string $twitter_site
+ * @return string
+ */
+add_filter( 'inc2734_wp_seo_twitter_site', function( $twitter_site ) {
+	return $twitter_site;
+} );
 ```

@@ -12,6 +12,7 @@ class Inc2734_WP_SEO {
 
 		$includes = array(
 			'/app/controller',
+			'/app/setup',
 		);
 		foreach ( $includes as $include ) {
 			foreach ( glob( __DIR__ . $include . '/*.php' ) as $file ) {
@@ -19,25 +20,15 @@ class Inc2734_WP_SEO {
 			}
 		}
 
-		if ( ! class_exists( 'Inc2734_WP_Customizer_Framework' ) ) {
-			$wp_customizer_framework_path = get_theme_file_path( '/vendor/inc2734/wp-customizer-framework/src/wp-customizer-framework.php' );
-			if ( file_exists( $wp_customizer_framework_path ) ) {
-				require_once( $wp_customizer_framework_path );
-			} else {
-				require_once( __DIR__ .  '/../../wp-customizer-framework/src/wp-customizer-framework.php' );
-			}
-		}
-
 		if ( ! class_exists( 'Inc2734_WP_OGP' ) ) {
-			$wp_customizer_framework_path = get_theme_file_path( '/vendor/inc2734/wp-ogp/src/wp-ogp.php' );
-			if ( file_exists( $wp_customizer_framework_path ) ) {
-				require_once( $wp_customizer_framework_path );
+			$path = get_theme_file_path( '/vendor/inc2734/wp-ogp/src/wp-ogp.php' );
+			if ( file_exists( $path ) ) {
+				require_once( $path );
 			} else {
 				require_once( __DIR__ .  '/../../wp-ogp/src/wp-ogp.php' );
 			}
 		}
 
-		new Inc2734_WP_SEO_Meta();
-		new Inc2734_WP_SEO_Customizer();
+		new Inc2734_WP_SEO_Meta_Description();
 	}
 }

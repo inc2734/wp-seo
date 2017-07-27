@@ -5,7 +5,7 @@
  * @license GPL-2.0+
  */
 
-class Inc2734_WP_SEO_Meta {
+class Inc2734_WP_SEO_Meta_Description {
 
 	public function __construct() {
 		add_action( 'add_meta_boxes', array( $this, '_add_meta_boxes' ), 10, 2 );
