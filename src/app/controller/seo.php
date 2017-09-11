@@ -5,11 +5,12 @@
  * @license GPL-2.0+
  */
 
-class Inc2734_WP_SEO_Meta_Description {
+class Inc2734_WP_SEO_Posts_Controller {
 
 	public function __construct() {
 		add_action( 'add_meta_boxes', array( $this, '_add_meta_boxes' ), 10, 2 );
-		add_action( 'save_post'     , array( $this, '_save_post' ) );
+		add_action( 'save_post'     , array( $this, '_save_meta_description' ) );
+		add_action( 'save_post'     , array( $this, '_save_meta_robots' ) );
 	}
 
 	/**
@@ -45,8 +46,8 @@ class Inc2734_WP_SEO_Meta_Description {
 		<?php wp_nonce_field( 'wp-seo-meta-box-action', 'wp-seo-meta-box-nonce' ); ?>
 		<p>
 			<label for="wp-seo-meta-description">
-				<?php esc_html_e( 'Meta description', 'inc2734-wp-seo' ); ?>
-			</label>
+				<b><?php esc_html_e( 'Meta description', 'inc2734-wp-seo' ); ?></b>
+			</label><br />
 			<input
 				type="text"
 				name="wp-seo-meta-description"
@@ -55,16 +56,38 @@ class Inc2734_WP_SEO_Meta_Description {
 				value="<?php echo sanitize_text_field( get_post_meta( $post->ID, 'wp-seo-meta-description', true ) ); ?>"
 			/>
 		</p>
+		<p>
+			<b><?php esc_html_e( 'Meta robots', 'inc2734-wp-seo' ); ?></b><br />
+			<?php
+			$robots = (array) get_post_meta( $post->ID, 'wp-seo-meta-robots', true );
+			$robots_choices = [
+				'noindex',
+				'nofollow',
+			]
+			?>
+			<?php foreach ( $robots_choices as $robot ) : ?>
+				<label for="wp-seo-meta-robots-<?php echo esc_attr( $robot ); ?>" style="margin-right: 1em;">
+					<input
+						type="checkbox"
+						name="wp-seo-meta-robots[]"
+						id="wp-seo-meta-robots-<?php echo esc_attr( $robot ); ?>"
+						value="<?php echo esc_attr( $robot ); ?>"
+						<?php checked( in_array( $robot, $robots ) ); ?>
+					/>
+					<?php echo esc_html( $robot ); ?>
+				</label>
+			<?php endforeach; ?>
+		</p>
 		<?php
 	}
 
 	/**
-	 * Save data from meta box
+	 * Save meta description
 	 *
 	 * @param [int] $post_id
 	 * @return void
 	 */
-	public function _save_post( $post_id ) {
+	public function _save_meta_description( $post_id ) {
 		if ( empty( $_POST['wp-seo-meta-box-nonce'] ) ) {
 			return;
 		}
@@ -90,5 +113,36 @@ class Inc2734_WP_SEO_Meta_Description {
 		}
 
 		update_post_meta( $post_id, 'wp-seo-meta-description', $_POST['wp-seo-meta-description'] );
+	}
+
+	/**
+	 * Save meta robots
+	 *
+	 * @param [int] $post_id
+	 * @return void
+	 */
+	public function _save_meta_robots( $post_id ) {
+		if ( empty( $_POST['wp-seo-meta-box-nonce'] ) ) {
+			return;
+		}
+
+		if ( ! wp_verify_nonce( $_POST['wp-seo-meta-box-nonce'], 'wp-seo-meta-box-action' ) ) {
+			return;
+		}
+
+		if ( defined( 'DOING_AUTOSAVE' ) && DOING_AUTOSAVE ) {
+			return;
+		}
+
+		if ( ! current_user_can( 'edit_post', $post_id ) ) {
+			return;
+		}
+
+		if ( ! isset( $_POST['wp-seo-meta-robots'] ) ) {
+			update_post_meta( $post_id, 'wp-seo-meta-robots', [] );
+			return;
+		}
+
+		update_post_meta( $post_id, 'wp-seo-meta-robots', $_POST['wp-seo-meta-robots'] );
 	}
 }

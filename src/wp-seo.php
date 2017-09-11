@@ -29,6 +29,6 @@ class Inc2734_WP_SEO {
 			}
 		}
 
-		new Inc2734_WP_SEO_Meta_Description();
+		new Inc2734_WP_SEO_Posts_Controller();
 	}
 }
