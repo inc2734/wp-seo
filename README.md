@@ -16,11 +16,11 @@ $ composer require inc2734/wp-seo
 ```
 <?php
 // When Using composer auto loader
-// $Basis = new Inc2734\WP_SEO\SEO();
+$Basis = new Inc2734\WP_SEO\SEO();
 
 // When not Using composer auto loader
-include_once( get_theme_file_path( '/vendor/inc2734/wp-seo/src/wp-seo.php' ) );
-new Inc2734_WP_SEO();
+// include_once( get_theme_file_path( '/vendor/inc2734/wp-seo/src/wp-seo.php' ) );
+// new Inc2734_WP_SEO();
 
 /**
  * Google Analytics Tracking ID

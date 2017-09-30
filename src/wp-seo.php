@@ -5,6 +5,9 @@
  * @license GPL-2.0+
  */
 
+/**
+ * WordPress simple SEO library
+ */
 class Inc2734_WP_SEO {
 
 	public function __construct() {
@@ -25,7 +28,7 @@ class Inc2734_WP_SEO {
 			if ( file_exists( $path ) ) {
 				require_once( $path );
 			} else {
-				require_once( __DIR__ .  '/../../wp-ogp/src/wp-ogp.php' );
+				require_once( __DIR__ . '/../../wp-ogp/src/wp-ogp.php' );
 			}
 		}
 

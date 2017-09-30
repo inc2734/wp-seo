@@ -5,6 +5,9 @@
  * @license GPL-2.0+
  */
 
+/**
+ * SEO for posts
+ */
 class Inc2734_WP_SEO_Posts_Controller {
 
 	public function __construct() {
@@ -53,7 +56,7 @@ class Inc2734_WP_SEO_Posts_Controller {
 				name="wp-seo-meta-description"
 				class="widefat"
 				id="wp-seo-meta-description"
-				value="<?php echo sanitize_text_field( get_post_meta( $post->ID, 'wp-seo-meta-description', true ) ); ?>"
+				value="<?php echo esc_attr( get_post_meta( $post->ID, 'wp-seo-meta-description', true ) ); ?>"
 			/>
 		</p>
 		<p>
