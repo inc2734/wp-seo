@@ -25,7 +25,7 @@ class Inc2734_WP_SEO_Posts_Controller {
 	 */
 	public function _add_meta_boxes( $post_type, $post ) {
 		$post_type_object = get_post_type_object( $post_type );
-		if ( ! $post_type_object->public ) {
+		if ( empty( $post_type_object ) || empty( $post_type_object->public ) ) {
 			return;
 		}
 
