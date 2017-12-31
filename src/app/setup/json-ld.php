@@ -18,11 +18,17 @@ add_action( 'wp_head', function() {
 	$ogp = new Inc2734_WP_OGP();
 	$json_ld = [];
 
-	if ( is_single() ) {
+	if ( is_singular() || ( is_front_page() && ! is_home() ) ) {
+
+		if ( is_single() ) {
+			$type = 'BlogPosting';
+		} else {
+			$type = 'Article';
+		}
 
 		$json_ld = [
 			'@context' => 'http://schema.org',
-			'@type'    => 'BlogPosting',
+			'@type'    => $type,
 			'headline' => $ogp->get_title(),
 			'author'   => [
 				'@type' => 'Person',
@@ -41,22 +47,20 @@ add_action( 'wp_head', function() {
 				'@type' => 'WebPage',
 				'@id'   => $ogp->get_url(),
 			],
-			'image'         => $ogp->get_image(),
+			'image' => [
+				'@type' => 'ImageObject',
+				'url'   => $ogp->get_image(),
+			],
 			'datePublished' => get_the_time( 'c' ),
 			'dateModified'  => get_the_modified_time( 'c' ),
 			'articleBody'   => get_the_content(),
 		];
 
-	} elseif ( is_singular() || ( is_front_page() && ! is_home() ) ) {
+	} else {
 
 		$json_ld = [
 			'@context' => 'http://schema.org',
-			'@type'    => 'Article',
-			'headline' => $ogp->get_title(),
-			'author'   => [
-				'@type' => 'Person',
-				'name'  => get_the_author(),
-			],
+			'@type'    => 'WebSite',
 			'publisher' => [
 				'@type' => 'Organization',
 				'url'   => home_url(),
@@ -66,14 +70,6 @@ add_action( 'wp_head', function() {
 					'url'   => wp_get_attachment_image_url( get_theme_mod( 'custom_logo' ), 'full' ),
 				],
 			],
-			'mainEntityOfPage' => [
-				'@type' => 'WebPage',
-				'@id'   => $ogp->get_url(),
-			],
-			'image'         => $ogp->get_image(),
-			'datePublished' => get_the_time( 'c' ),
-			'dateModified'  => get_the_modified_time( 'c' ),
-			'articleBody'   => get_the_content(),
 		];
 
 	}
