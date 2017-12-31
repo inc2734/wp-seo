@@ -12,8 +12,8 @@ class Inc2734_WP_SEO_Posts_Controller {
 
 	public function __construct() {
 		add_action( 'add_meta_boxes', array( $this, '_add_meta_boxes' ), 10, 2 );
-		add_action( 'save_post'     , array( $this, '_save_meta_description' ) );
-		add_action( 'save_post'     , array( $this, '_save_meta_robots' ) );
+		add_action( 'save_post', array( $this, '_save_meta_description' ) );
+		add_action( 'save_post', array( $this, '_save_meta_robots' ) );
 	}
 
 	/**
