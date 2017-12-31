@@ -16,7 +16,7 @@ $ composer require inc2734/wp-seo
 ```
 <?php
 // When Using composer auto loader
-$Basis = new Inc2734\WP_SEO\SEO();
+new Inc2734\WP_SEO\SEO();
 
 // When not Using composer auto loader
 // include_once( get_theme_file_path( '/vendor/inc2734/wp-seo/src/wp-seo.php' ) );
@@ -69,6 +69,24 @@ add_filter( 'inc2734_wp_seo_defult_ogp_image_url', function( $default_ogp_image_
  * @return bool
  */
 add_filter( 'inc2734_wp_seo_ogp', '__return_true' );
+
+/**
+ * When you want to print structured data (JSON+LD), return true
+ *
+ * @param bool false
+ * @return bool
+ */
+add_filter( 'inc2734_wp_seo_use_json_ld', '__return_true' );
+
+/**
+ * Structured data (JSON+LD)
+ *
+ * @param array $json_ld
+ * @return array
+ */
+add_filter( 'inc2734_wp_seo_json_ld', function( $json_ld ) {
+  return $json_ld;
+} );
 
 /**
  * twitter:card
