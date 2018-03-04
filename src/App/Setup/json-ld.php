@@ -15,12 +15,12 @@ add_action( 'wp_head', function() {
 		return;
 	}
 
-	$ogp = new Inc2734_WP_OGP();
+	$ogp = new \Inc2734\WP_OGP\OGP();
 	$json_ld = [];
 
 	if ( is_singular() || ( is_front_page() && ! is_home() ) ) {
 
-		if ( is_single() ) {
+		if ( is_singular( 'post' ) ) {
 			$type = 'BlogPosting';
 		} else {
 			$type = 'Article';

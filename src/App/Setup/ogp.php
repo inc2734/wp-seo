@@ -57,7 +57,7 @@ add_action( 'wp_head', function() {
 		return;
 	}
 
-	$ogp = new Inc2734_WP_OGP();
+	$ogp = new \Inc2734\WP_OGP\OGP();
 	?>
 	<meta property="og:title" content="<?php echo esc_attr( $ogp->get_title() ); ?>">
 	<meta property="og:type" content="<?php echo esc_attr( $ogp->get_type() ); ?>">

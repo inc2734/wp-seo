@@ -18,10 +18,6 @@ $ composer require inc2734/wp-seo
 // When Using composer auto loader
 new Inc2734\WP_SEO\SEO();
 
-// When not Using composer auto loader
-// include_once( get_theme_file_path( '/vendor/inc2734/wp-seo/src/wp-seo.php' ) );
-// new Inc2734_WP_SEO();
-
 /**
  * Google Tag Manager ID
  *

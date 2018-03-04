@@ -5,10 +5,9 @@
  * @license GPL-2.0+
  */
 
-/**
- * SEO for posts
- */
-class Inc2734_WP_SEO_Posts_Controller {
+namespace Inc2734\WP_SEO\App\Controller;
+
+class Posts {
 
 	public function __construct() {
 		add_action( 'add_meta_boxes', array( $this, '_add_meta_boxes' ), 10, 2 );
