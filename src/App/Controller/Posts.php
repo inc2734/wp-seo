@@ -140,7 +140,7 @@ class Posts {
 			return;
 		}
 
-		if ( ! isset( $_POST['wp-seo-meta-robots'] ) ) {
+		if ( ! isset( $_POST['wp-seo-meta-robots'] ) || ! is_array( $_POST['wp-seo-meta-robots'] ) ) {
 			update_post_meta( $post_id, 'wp-seo-meta-robots', [] );
 			return;
 		}

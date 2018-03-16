@@ -16,7 +16,7 @@ add_action( 'wp_head', function() {
 	}
 
 	$meta_robots = get_post_meta( get_the_ID(), 'wp-seo-meta-robots', true );
-	if ( ! $meta_robots ) {
+	if ( ! $meta_robots || ! is_array( $meta_robots ) ) {
 		return;
 	}
 	?>
