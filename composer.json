@@ -2,10 +2,10 @@
   "name": "inc2734/wp-seo",
   "description": "A library for SEO of WordPress.",
   "license": "GPL-2.0-or-later",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "require": {
     "php": ">=5.6",
-    "inc2734/wp-ogp": ">=1.0.1"
+    "inc2734/wp-ogp": ">=1.0.2"
   },
   "require-dev": {
     "squizlabs/php_codesniffer": "*",

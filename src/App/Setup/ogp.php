@@ -26,6 +26,7 @@ add_filter( 'inc2734_wp_ogp_description', function( $description ) {
 	if ( $meta_description ) {
 		return $meta_description;
 	}
+
 	return $description;
 } );
 

@@ -16,6 +16,7 @@ add_action( 'wp_head', function() {
 	}
 
 	$meta_description = get_post_meta( get_the_ID(), 'wp-seo-meta-description', true );
+	$meta_description = apply_filters( 'inc2734_wp_seo_description', $meta_description );
 	if ( ! $meta_description ) {
 		return;
 	}
