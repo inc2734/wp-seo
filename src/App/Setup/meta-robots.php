@@ -11,11 +11,13 @@
  * @return void
  */
 add_action( 'wp_head', function() {
-	if ( ! is_singular() || ( is_home() && ! is_front_page() ) ) {
-		return;
+	$meta_robots = [];
+
+	if ( is_singular() && ! is_front_page() ) {
+		$meta_robots = get_post_meta( get_the_ID(), 'wp-seo-meta-robots', true );
 	}
 
-	$meta_robots = get_post_meta( get_the_ID(), 'wp-seo-meta-robots', true );
+	$meta_robots = apply_filters( 'wp_seo_meta_robots', $meta_robots );
 	if ( ! $meta_robots || ! is_array( $meta_robots ) ) {
 		return;
 	}

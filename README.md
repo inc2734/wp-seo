@@ -103,4 +103,14 @@ add_filter( 'inc2734_wp_seo_twitter_card', function( $twitter_card ) {
 add_filter( 'inc2734_wp_seo_twitter_site', function( $twitter_site ) {
 	return $twitter_site;
 } );
+
+/**
+ * meta robots
+ */
+add_filter( 'wp_seo_meta_robots', function( $robots ) {
+	if ( is_tag() ) {
+		$robots = [ 'noindex' ];
+	}
+	return $robots;
+} );
 ```
