@@ -10,18 +10,21 @@
  *
  * @return void
  */
-add_action( 'wp_head', function() {
-	$meta_robots = [];
+add_action(
+	'wp_head',
+	function() {
+		$meta_robots = [];
 
-	if ( is_singular() && ! is_front_page() ) {
-		$meta_robots = get_post_meta( get_the_ID(), 'wp-seo-meta-robots', true );
-	}
+		if ( is_singular() && ! is_front_page() ) {
+			$meta_robots = get_post_meta( get_the_ID(), 'wp-seo-meta-robots', true );
+		}
 
-	$meta_robots = apply_filters( 'wp_seo_meta_robots', $meta_robots );
-	if ( ! $meta_robots || ! is_array( $meta_robots ) ) {
-		return;
+		$meta_robots = apply_filters( 'wp_seo_meta_robots', $meta_robots );
+		if ( ! $meta_robots || ! is_array( $meta_robots ) ) {
+			return;
+		}
+		?>
+		<meta name="robots" content="<?php echo esc_attr( implode( ', ', $meta_robots ) ); ?>">
+		<?php
 	}
-	?>
-	<meta name="robots" content="<?php echo esc_attr( implode( ', ', $meta_robots ) ); ?>">
-	<?php
-} );
+);
