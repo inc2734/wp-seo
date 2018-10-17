@@ -68,12 +68,12 @@ add_action(
 
 		$ogp = new \Inc2734\WP_OGP\OGP();
 		?>
-		<meta property="og:title" content="<?php echo esc_attr( $ogp->get_title() ); ?>">
+		<meta property="og:title" content="<?php echo esc_attr( strip_tags( $ogp->get_title() ) ); ?>">
 		<meta property="og:type" content="<?php echo esc_attr( $ogp->get_type() ); ?>">
 		<meta property="og:url" content="<?php echo esc_attr( $ogp->get_url() ); ?>">
 		<meta property="og:image" content="<?php echo esc_attr( $ogp->get_image() ); ?>">
 		<meta property="og:site_name" content="<?php echo esc_attr( $ogp->get_site_name() ); ?>">
-		<meta property="og:description" content="<?php echo esc_attr( $ogp->get_description() ); ?>">
+		<meta property="og:description" content="<?php echo esc_attr( strip_tags( $ogp->get_description() ) ); ?>">
 		<meta property="og:locale" content="<?php echo esc_attr( $ogp->get_locale() ); ?>">
 		<?php if ( $ogp->get_app_id() ) : ?>
 			<meta property="fb:app_id" content="<?php echo esc_attr( $ogp->get_app_id() ); ?>">
