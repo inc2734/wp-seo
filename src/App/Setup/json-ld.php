@@ -69,7 +69,7 @@ add_action(
 					],
 					'datePublished' => get_the_time( 'c' ),
 					'dateModified'  => get_the_modified_time( 'c' ),
-					'articleBody'   => get_the_content(),
+					'description'   => strip_tags( get_the_excerpt() ),
 				];
 			}
 
