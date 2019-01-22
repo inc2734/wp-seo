@@ -66,7 +66,7 @@ add_action(
 			return;
 		}
 
-		$ogp = new \Inc2734\WP_OGP\OGP();
+		$ogp = new \Inc2734\WP_OGP\Bootstrap();
 		?>
 		<meta property="og:title" content="<?php echo esc_attr( strip_tags( $ogp->get_title() ) ); ?>">
 		<meta property="og:type" content="<?php echo esc_attr( $ogp->get_type() ); ?>">
