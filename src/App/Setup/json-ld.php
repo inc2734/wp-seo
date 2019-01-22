@@ -17,7 +17,7 @@ add_action(
 			return;
 		}
 
-		$ogp = new \Inc2734\WP_OGP\OGP();
+		$ogp = new \Inc2734\WP_OGP\Boostrap();
 		$json_ld = [];
 
 		if ( is_singular() || ( is_front_page() && ! is_home() ) ) {
