@@ -21,7 +21,6 @@ add_action(
 		$json_ld = [];
 
 		if ( is_singular() || ( is_front_page() && ! is_home() ) ) {
-
 			if ( is_singular( 'post' ) ) {
 				$type = 'BlogPosting';
 			} else {
@@ -74,9 +73,7 @@ add_action(
 			}
 
 			wp_reset_postdata();
-
 		} else {
-
 			$json_ld = [
 				'@context' => 'http://schema.org',
 				'@type'    => 'WebSite',
@@ -90,7 +87,6 @@ add_action(
 					],
 				],
 			];
-
 		}
 
 		$json_ld = apply_filters( 'inc2734_wp_seo_json_ld', $json_ld );

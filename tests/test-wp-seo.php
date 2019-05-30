@@ -16,6 +16,6 @@ class Inc2734_WP_SEO_Test extends WP_UnitTestCase {
 	 * @test
 	 */
 	public function sample() {
-		new \Inc2734\WP_SEO\SEO();
+		new \Inc2734\WP_SEO\Bootstrap();
 	}
 }

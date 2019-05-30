@@ -19,7 +19,8 @@ add_action(
 			$meta_robots = get_post_meta( get_the_ID(), 'wp-seo-meta-robots', true );
 		}
 
-		$meta_robots = apply_filters( 'wp_seo_meta_robots', $meta_robots );
+		$meta_robots = apply_filters( 'wp_seo_meta_robots', $meta_robots ); // @deprecated
+		$meta_robots = apply_filters( 'inc2734_wp_seo_meta_robots', $meta_robots );
 		if ( ! $meta_robots || ! is_array( $meta_robots ) ) {
 			return;
 		}

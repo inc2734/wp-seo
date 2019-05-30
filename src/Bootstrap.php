@@ -9,13 +9,13 @@ namespace Inc2734\WP_SEO;
 
 use Inc2734\WP_SEO\App\Controller;
 
-class SEO {
+class Bootstrap {
 
 	public function __construct() {
 		load_textdomain( 'inc2734-wp-seo', __DIR__ . '/languages/' . get_locale() . '.mo' );
 
 		$includes = array(
-			'/App/Setup',
+			'/setup',
 		);
 		foreach ( $includes as $include ) {
 			foreach ( glob( __DIR__ . $include . '/*.php' ) as $file ) {
