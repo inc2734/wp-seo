@@ -16,20 +16,12 @@ $ composer require inc2734/wp-seo
 ```
 <?php
 new \Inc2734\WP_SEO\Bootstrap();
+```
 
-/**
- * Google Tag Manager ID
- *
- * @param string $tag_manager_id
- * @return string
- */
-add_filter(
-	'inc2734_wp_seo_google_tag_manager_id',
-	function( $tag_manager_id ) {
-		return $tag_manager_id;
-	}
-);
+## Filter hooks
 
+### inc2734_wp_seo_google_analytics_tracking_id
+```
 /**
  * Google Analytics Tracking ID
  *
@@ -42,20 +34,10 @@ add_filter(
 		return $tracking_id;
 	}
 );
+```
 
-/**
- * Google Site Verification
- *
- * @param string $google_site_verification
- * @return string
- */
-add_filter(
-	'inc2734_wp_seo_google_site_verification',
-	function( $google_site_verification ) {
-		return $google_site_verification;
-	}
-);
-
+### inc2734_wp_seo_defult_ogp_image_url
+```
 /**
  * Default og:image
  *
@@ -68,7 +50,10 @@ add_filter(
 		return $default_ogp_image_url;
 	}
 );
+```
 
+### inc2734_wp_seo_ogp
+```
 /**
  * When you want to print ogp meta tags, return true
  *
@@ -76,54 +61,10 @@ add_filter(
  * @return bool
  */
 add_filter( 'inc2734_wp_seo_ogp', '__return_true' );
+```
 
-/**
- * When you want to print structured data (JSON+LD), return true
- *
- * @param bool false
- * @return bool
- */
-add_filter( 'inc2734_wp_seo_use_json_ld', '__return_true' );
-
-/**
- * Structured data (JSON+LD)
- *
- * @param array $json_ld
- * @return array
- */
-add_filter(
-	'inc2734_wp_seo_json_ld',
-	function( $json_ld ) {
-		return $json_ld;
-	}
-);
-
-/**
- * twitter:card
- *
- * @param string $twitter_card
- * @return string
- */
-add_filter(
-	'inc2734_wp_seo_twitter_card',
-	function( $twitter_card ) {
-		return $twitter_card;
-	}
-);
-
-/**
- * twitter:site
- *
- * @param string $twitter_site
- * @return string
- */
-add_filter(
-	'inc2734_wp_seo_twitter_site',
-	function( $twitter_site ) {
-		return $twitter_site;
-	}
-);
-
+### inc2734_wp_seo_meta_robots
+```
 /**
  * meta robots
  */
@@ -136,7 +77,10 @@ add_filter(
 		return $robots;
 	}
 );
+```
 
+### inc2734_wp_seo_description
+```
 /**
  * meta description
  */
@@ -146,7 +90,101 @@ add_filter(
 		return $meta_description;
 	}
 );
+```
 
+### inc2734_wp_seo_google_tag_manager_id
+```
+/**
+ * Google Tag Manager ID
+ *
+ * @param string $tag_manager_id
+ * @return string
+ */
+add_filter(
+	'inc2734_wp_seo_google_tag_manager_id',
+	function( $tag_manager_id ) {
+		return $tag_manager_id;
+	}
+);
+```
+
+### inc2734_wp_seo_use_json_ld
+```
+/**
+ * When you want to print structured data (JSON+LD), return true
+ *
+ * @param bool false
+ * @return bool
+ */
+add_filter( 'inc2734_wp_seo_use_json_ld', '__return_true' );
+```
+
+### inc2734_wp_seo_json_ld
+```
+/**
+ * Structured data (JSON+LD)
+ *
+ * @param array $json_ld
+ * @return array
+ */
+add_filter(
+	'inc2734_wp_seo_json_ld',
+	function( $json_ld ) {
+		return $json_ld;
+	}
+);
+```
+
+### inc2734_wp_seo_twitter_card
+```
+/**
+ * twitter:card
+ *
+ * @param string $twitter_card
+ * @return string
+ */
+add_filter(
+	'inc2734_wp_seo_twitter_card',
+	function( $twitter_card ) {
+		return $twitter_card;
+	}
+);
+```
+
+### inc2734_wp_seo_twitter_site
+```
+/**
+ * twitter:site
+ *
+ * @param string $twitter_site
+ * @return string
+ */
+add_filter(
+	'inc2734_wp_seo_twitter_site',
+	function( $twitter_site ) {
+		return $twitter_site;
+	}
+);
+```
+
+### inc2734_wp_seo_google_site_verification
+```
+/**
+ * Google Site Verification
+ *
+ * @param string $google_site_verification
+ * @return string
+ */
+add_filter(
+	'inc2734_wp_seo_google_site_verification',
+	function( $google_site_verification ) {
+		return $google_site_verification;
+	}
+);
+```
+
+### inc2734_wp_seo_thumbnail
+```
 /**
  * meta thumbnail
  */

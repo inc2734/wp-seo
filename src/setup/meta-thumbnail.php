@@ -5,22 +5,17 @@
  * @license GPL-2.0+
  */
 
+use Inc2734\WP_SEO\Helper;
+
 /**
- * Print meta thumbnail for sngular page
+ * Print meta thumbnail
  *
  * @return void
  */
 add_action(
 	'wp_head',
 	function() {
-		if ( ! is_singular() || is_home() || is_front_page() ) {
-			return;
-		}
-
-		$thumbnail_id = get_post_thumbnail_id( get_the_ID() );
-		$thumbnail    = wp_get_attachment_image_url( $thumbnail_id, 'full' );
-		$thumbnail    = apply_filters( 'inc2734_wp_seo_thumbnail', $thumbnail );
-
+		$thumbnail = Helper::get_the_thumbnail();
 		if ( ! $thumbnail ) {
 			return;
 		}
