@@ -12,7 +12,7 @@ class Helper {
 	/**
 	 * Return description of the post
 	 *
-	 * @param  int|WP_Post $post
+	 * @param int|WP_Post $post
 	 * @return string
 	 */
 	public static function get_the_description( $post = 0 ) {
@@ -29,22 +29,32 @@ class Helper {
 		return apply_filters( 'inc2734_wp_seo_description', $meta_description );
 	}
 
+	/**
+	 * Return description for singular.
+	 * When wp-seo-meta-description meta is empty, return empty.
+	 *
+	 * @param int|WP_Post $post
+	 * @return string
+	 */
 	protected static function _get_singular_description( $post = 0 ) {
 		$post = get_post( $post );
-		$meta_description = get_post_meta( $post->ID, 'wp-seo-meta-description', true );
-
-		return $meta_description ? $meta_description : get_bloginfo( 'description' );
+		return get_post_meta( $post->ID, 'wp-seo-meta-description', true );
 	}
 
+	/**
+	 * Return description for home.
+	 * When wp-seo-meta-description meta is empty, return empty.
+	 *
+	 * @param int|WP_Post $post
+	 * @return string
+	 */
 	protected static function _get_home_description() {
-		$show_on_front  = get_option( 'show_on_front' );
-		$page_for_posts = get_option( 'page_for_posts' );
+		$show_on_front    = get_option( 'show_on_front' );
+		$page_for_posts   = get_option( 'page_for_posts' );
 
 		if ( 'page' === $show_on_front && $page_for_posts ) {
-			$meta_description = get_post_meta( $page_for_posts, 'wp-seo-meta-description', true );
+			return get_post_meta( $page_for_posts, 'wp-seo-meta-description', true );
 		}
-
-		return $meta_description ? $meta_description : get_bloginfo( 'description' );
 	}
 
 	/**
@@ -69,7 +79,6 @@ class Helper {
 		if ( 0 !== $post || is_singular() || ( is_front_page() && ! is_home() ) ) {
 			$thumbnail_id = get_post_thumbnail_id( get_the_ID() );
 			$thumbnail    = wp_get_attachment_image_url( $thumbnail_id, 'full' );
-			$thumbnail    = apply_filters( 'inc2734_wp_seo_thumbnail', $thumbnail );
 		}
 
 		return apply_filters( 'inc2734_wp_seo_thumbnail', $thumbnail );

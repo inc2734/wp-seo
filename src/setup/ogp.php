@@ -29,12 +29,9 @@ add_filter(
 add_filter(
 	'inc2734_wp_ogp_image',
 	function( $og_image ) {
-		if ( $og_image ) {
-			return $og_image;
-		}
-
-		$default_og_image = apply_filters( 'inc2734_wp_seo_defult_ogp_image_url', null );
-		return $default_og_image ? $default_og_image : $og_image;
+		return $og_image
+			? $og_image
+			: apply_filters( 'inc2734_wp_seo_defult_ogp_image_url', null );
 	}
 );
 
