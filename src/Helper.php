@@ -23,7 +23,7 @@ class Helper {
 		}
 
 		if ( is_home() ) {
-			$meta_description = static::_get_home_description( $post );
+			$meta_description = static::_get_home_description();
 		}
 
 		return apply_filters( 'inc2734_wp_seo_description', $meta_description );
@@ -49,11 +49,11 @@ class Helper {
 	 * @return string
 	 */
 	protected static function _get_home_description() {
-		$show_on_front    = get_option( 'show_on_front' );
-		$page_for_posts   = get_option( 'page_for_posts' );
+		$show_on_front  = get_option( 'show_on_front' );
+		$page_for_posts = get_option( 'page_for_posts' );
 
 		if ( 'page' === $show_on_front && $page_for_posts ) {
-			return get_post_meta( $page_for_posts, 'wp-seo-meta-description', true );
+			return static::_get_singular_description( $page_for_posts );
 		}
 	}
 
@@ -77,7 +77,8 @@ class Helper {
 		$thumbnail = '';
 
 		if ( 0 !== $post || is_singular() || ( is_front_page() && ! is_home() ) ) {
-			$thumbnail_id = get_post_thumbnail_id( get_the_ID() );
+			$post = get_post( $post );
+			$thumbnail_id = get_post_thumbnail_id( $post );
 			$thumbnail    = wp_get_attachment_image_url( $thumbnail_id, 'full' );
 		}
 
