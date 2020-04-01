@@ -10,9 +10,21 @@ namespace Inc2734\WP_SEO\App\Controller;
 class Posts {
 
 	public function __construct() {
-		add_action( 'add_meta_boxes', array( $this, '_add_meta_boxes' ), 10, 2 );
-		add_action( 'save_post', array( $this, '_save_meta_description' ) );
-		add_action( 'save_post', array( $this, '_save_meta_robots' ) );
+		add_action( 'enqueue_block_editor_assets', [ $this, '_enqueue_block_editor_assets' ] );
+		add_action( 'add_meta_boxes', [ $this, '_add_meta_boxes' ], 10, 2 );
+		add_action( 'save_post', [ $this, '_save_meta_description' ] );
+		add_action( 'save_post', [ $this, '_save_meta_robots' ] );
+	}
+
+	public function _enqueue_block_editor_assets() {
+		$asset = include( get_template_directory() . '/vendor/inc2734/wp-seo/src/dist/js/editor.asset.php' );
+		wp_enqueue_script(
+			'inc2734-wp-seo@editor',
+			get_template_directory_uri() . '/vendor/inc2734/wp-seo/src/dist/js/editor.js',
+			$asset['dependencies'],
+			filemtime( get_template_directory() . '/vendor/inc2734/wp-seo/src/dist/js/editor.js' ),
+			true
+		);
 	}
 
 	/**
@@ -49,14 +61,15 @@ class Posts {
 		<p>
 			<label for="wp-seo-meta-description">
 				<b><?php esc_html_e( 'Meta description', 'inc2734-wp-seo' ); ?></b>
+				( <?php esc_html_e( 'Number of characters', 'inc2734-wp-seo' ); ?>: <span id="wp-seo-meta-description-counter">0</span> )
 			</label><br />
-			<input
+			<textarea
 				type="text"
 				name="wp-seo-meta-description"
 				class="widefat"
+				rows="3"
 				id="wp-seo-meta-description"
-				value="<?php echo esc_attr( get_post_meta( $post->ID, 'wp-seo-meta-description', true ) ); ?>"
-			/>
+			><?php echo esc_attr( get_post_meta( $post->ID, 'wp-seo-meta-description', true ) ); ?></textarea>
 		</p>
 		<p>
 			<b><?php esc_html_e( 'Meta robots', 'inc2734-wp-seo' ); ?></b><br />
@@ -115,6 +128,7 @@ class Posts {
 		}
 
 		$meta_description = wp_unslash( filter_input( INPUT_POST, 'wp-seo-meta-description' ) );
+		$meta_description = wp_strip_all_tags( $meta_description, true );
 		update_post_meta( $post_id, 'wp-seo-meta-description', $meta_description );
 	}
 
