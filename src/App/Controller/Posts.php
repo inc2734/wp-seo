@@ -17,6 +17,16 @@ class Posts {
 	}
 
 	public function _enqueue_block_editor_assets() {
+		$post_type = get_post_type();
+		if ( ! $post_type ) {
+			return;
+		}
+
+		$post_type_object = get_post_type_object( $post_type );
+		if ( empty( $post_type_object ) || empty( $post_type_object->public ) ) {
+			return;
+		}
+
 		$asset = include( get_template_directory() . '/vendor/inc2734/wp-seo/src/dist/js/editor.asset.php' );
 		wp_enqueue_script(
 			'inc2734-wp-seo@editor',
