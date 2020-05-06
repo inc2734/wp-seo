@@ -60,5 +60,6 @@ add_action(
 			<meta property="fb:app_id" content="<?php echo esc_attr( $ogp->get_app_id() ); ?>">
 		<?php endif; ?>
 		<?php
-	}
+	},
+	1
 );

@@ -22,5 +22,6 @@ add_action(
 		?>
 		<meta name="description" content="<?php echo esc_attr( $meta_description ); ?>">
 		<?php
-	}
+	},
+	1
 );
