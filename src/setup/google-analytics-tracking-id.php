@@ -18,7 +18,10 @@ add_action(
 			return;
 		}
 
-		if ( ! preg_match( '/^UA-\d+-\d+$/', $tracking_id ) ) {
+		if (
+			! preg_match( '/^UA-\d+-\d+$/', $tracking_id )
+			&& ! preg_match( '/^G-[0-9A-Z]+$/', $tracking_id )
+		) {
 			return;
 		}
 
