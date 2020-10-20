@@ -17,7 +17,7 @@ add_action(
 			return;
 		}
 
-		$ogp = new \Inc2734\WP_OGP\Bootstrap();
+		$ogp     = new \Inc2734\WP_OGP\Bootstrap();
 		$json_ld = [];
 
 		if ( is_singular() || ( is_front_page() && ! is_home() ) ) {
@@ -42,14 +42,14 @@ add_action(
 				$query->the_post();
 
 				$json_ld = [
-					'@context' => 'http://schema.org',
-					'@type'    => $type,
-					'headline' => $ogp->get_title(),
-					'author'   => [
+					'@context'         => 'http://schema.org',
+					'@type'            => $type,
+					'headline'         => $ogp->get_title(),
+					'author'           => [
 						'@type' => 'Person',
 						'name'  => get_the_author(),
 					],
-					'publisher' => [
+					'publisher'        => [
 						'@type' => 'Organization',
 						'url'   => home_url(),
 						'name'  => $ogp->get_site_name(),
@@ -62,21 +62,21 @@ add_action(
 						'@type' => 'WebPage',
 						'@id'   => $ogp->get_url(),
 					],
-					'image' => [
+					'image'            => [
 						'@type' => 'ImageObject',
 						'url'   => $ogp->get_image(),
 					],
-					'datePublished' => get_the_time( 'c' ),
-					'dateModified'  => get_the_modified_time( 'c' ),
-					'description'   => $ogp->get_description(),
+					'datePublished'    => get_the_time( 'c' ),
+					'dateModified'     => get_the_modified_time( 'c' ),
+					'description'      => $ogp->get_description(),
 				];
 			}
 
 			wp_reset_postdata();
 		} else {
 			$json_ld = [
-				'@context' => 'http://schema.org',
-				'@type'    => 'WebSite',
+				'@context'  => 'http://schema.org',
+				'@type'     => 'WebSite',
 				'publisher' => [
 					'@type' => 'Organization',
 					'url'   => home_url(),

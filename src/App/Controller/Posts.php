@@ -9,13 +9,19 @@ namespace Inc2734\WP_SEO\App\Controller;
 
 class Posts {
 
+	/**
+	 * Constructor.
+	 */
 	public function __construct() {
 		add_action( 'enqueue_block_editor_assets', [ $this, '_enqueue_block_editor_assets' ] );
-		add_action( 'add_meta_boxes', [ $this, '_add_meta_boxes' ], 10, 2 );
+		add_action( 'add_meta_boxes', [ $this, '_add_meta_boxes' ] );
 		add_action( 'save_post', [ $this, '_save_meta_description' ] );
 		add_action( 'save_post', [ $this, '_save_meta_robots' ] );
 	}
 
+	/**
+	 * Enqueue block editor assets.
+	 */
 	public function _enqueue_block_editor_assets() {
 		$post_type = get_post_type();
 		if ( ! $post_type ) {
@@ -38,13 +44,12 @@ class Posts {
 	}
 
 	/**
-	 * Add meta box in pages of public post type
+	 * Add meta box in pages of public post type.
 	 *
-	 * @param [string] $post_type
-	 * @param [WP_Post] $post
+	 * @param string $post_type Post type.
 	 * @return void
 	 */
-	public function _add_meta_boxes( $post_type, $post ) {
+	public function _add_meta_boxes( $post_type ) {
 		$post_type_object = get_post_type_object( $post_type );
 		if ( empty( $post_type_object ) || empty( $post_type_object->public ) ) {
 			return;
@@ -60,9 +65,9 @@ class Posts {
 	}
 
 	/**
-	 * Display meta box
+	 * Display meta box.
 	 *
-	 * @param [WP_Post] $post
+	 * @param WP_Post $post Post object.
 	 * @return void
 	 */
 	public function _wp_seo_meta_box( $post ) {
@@ -84,7 +89,7 @@ class Posts {
 		<p>
 			<b><?php esc_html_e( 'Meta robots', 'inc2734-wp-seo' ); ?></b><br />
 			<?php
-			$robots = (array) get_post_meta( $post->ID, 'wp-seo-meta-robots', true );
+			$robots         = (array) get_post_meta( $post->ID, 'wp-seo-meta-robots', true );
 			$robots_choices = [
 				'noindex',
 				'nofollow',
@@ -97,7 +102,7 @@ class Posts {
 						name="wp-seo-meta-robots[]"
 						id="wp-seo-meta-robots-<?php echo esc_attr( $robot ); ?>"
 						value="<?php echo esc_attr( $robot ); ?>"
-						<?php checked( in_array( $robot, $robots ) ); ?>
+						<?php checked( in_array( $robot, $robots, true ) ); ?>
 					/>
 					<?php echo esc_html( $robot ); ?>
 				</label>
@@ -107,10 +112,9 @@ class Posts {
 	}
 
 	/**
-	 * Save meta description
+	 * Save meta description.
 	 *
-	 * @param [int] $post_id
-	 * @return void
+	 * @param int $post_id Post ID.
 	 */
 	public function _save_meta_description( $post_id ) {
 		if ( empty( $_POST['wp-seo-meta-box-nonce'] ) ) {
@@ -143,9 +147,9 @@ class Posts {
 	}
 
 	/**
-	 * Save meta robots
+	 * Save meta robots.
 	 *
-	 * @param [int] $post_id
+	 * @param int $post_id Post ID.
 	 * @return void
 	 */
 	public function _save_meta_robots( $post_id ) {

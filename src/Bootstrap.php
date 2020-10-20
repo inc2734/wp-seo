@@ -11,6 +11,9 @@ use Inc2734\WP_SEO\App\Controller;
 
 class Bootstrap {
 
+	/**
+	 * Constructor.
+	 */
 	public function __construct() {
 		load_textdomain( 'inc2734-wp-seo', __DIR__ . '/languages/' . get_locale() . '.mo' );
 
