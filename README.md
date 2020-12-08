@@ -1,6 +1,6 @@
 # WP SEO
 
-[![Build Status](https://travis-ci.org/inc2734/wp-seo.svg?branch=master)](https://travis-ci.org/inc2734/wp-seo)
+![CI](https://github.com/inc2734/wp-seo/workflows/CI/badge.svg)
 [![Latest Stable Version](https://poser.pugx.org/inc2734/wp-seo/v/stable)](https://packagist.org/packages/inc2734/wp-seo)
 [![License](https://poser.pugx.org/inc2734/wp-seo/license)](https://packagist.org/packages/inc2734/wp-seo)
 
