@@ -64,6 +64,10 @@ add_filter( 'inc2734_wp_seo_ogp', '__return_true' );
 ```
 
 ### inc2734_wp_seo_meta_robots
+
+This filter hook is deprecated.
+You can using wp_robots filter hook in WordPress 5.7 or later.
+
 ```
 /**
  * meta robots

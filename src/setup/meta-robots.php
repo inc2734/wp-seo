@@ -10,22 +10,22 @@
  *
  * @return void
  */
-add_action(
-	'wp_head',
-	function() {
-		$meta_robots = [];
+add_filter(
+	'wp_robots',
+	function( $robots ) {
+		$new_robots = [];
 
 		if ( is_singular() && ! is_front_page() ) {
-			$meta_robots = get_post_meta( get_the_ID(), 'wp-seo-meta-robots', true );
+			$new_robots = get_post_meta( get_the_ID(), 'wp-seo-meta-robots', true );
 		}
 
-		$meta_robots = apply_filters( 'wp_seo_meta_robots', $meta_robots ); // @deprecated
-		$meta_robots = apply_filters( 'inc2734_wp_seo_meta_robots', $meta_robots );
-		if ( ! $meta_robots || ! is_array( $meta_robots ) ) {
-			return;
+		$new_robots = apply_filters( 'wp_seo_meta_robots', $new_robots ); // @deprecated
+		$new_robots = apply_filters( 'inc2734_wp_seo_meta_robots', $new_robots );
+
+		foreach ( $new_robots as $value ) {
+			$robots[ $value ] = true;
 		}
-		?>
-		<meta name="robots" content="<?php echo esc_attr( implode( ', ', $meta_robots ) ); ?>">
-		<?php
+
+		return $robots;
 	}
 );
