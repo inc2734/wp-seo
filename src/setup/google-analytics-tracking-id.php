@@ -28,7 +28,7 @@ add_action(
 		wp_enqueue_script(
 			'inc2734-wp-seo-google-analytics',
 			esc_url( 'https://www.googletagmanager.com/gtag/js?id=' . $tracking_id ),
-			[],
+			array(),
 			1,
 			false
 		);

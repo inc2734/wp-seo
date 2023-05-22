@@ -3,6 +3,10 @@ document.addEventListener(
   () => {
     const description = document.getElementById('wp-seo-meta-description');
     const counter = document.getElementById('wp-seo-meta-description-counter');
+		if ( ! description || ! counter ) {
+			return;
+		}
+
     const count = () => counter.innerText = description.value.length;
     const removeBreaks = () => description.value = description.value.replace(/\r?\n/g, '');
 

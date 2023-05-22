@@ -13,10 +13,10 @@ class Posts {
 	 * Constructor.
 	 */
 	public function __construct() {
-		add_action( 'enqueue_block_editor_assets', [ $this, '_enqueue_block_editor_assets' ] );
-		add_action( 'add_meta_boxes', [ $this, '_add_meta_boxes' ] );
-		add_action( 'save_post', [ $this, '_save_meta_description' ] );
-		add_action( 'save_post', [ $this, '_save_meta_robots' ] );
+		add_action( 'enqueue_block_editor_assets', array( $this, '_enqueue_block_editor_assets' ) );
+		add_action( 'add_meta_boxes', array( $this, '_add_meta_boxes' ) );
+		add_action( 'save_post', array( $this, '_save_meta_description' ) );
+		add_action( 'save_post', array( $this, '_save_meta_robots' ) );
 	}
 
 	/**
@@ -90,10 +90,10 @@ class Posts {
 			<b><?php esc_html_e( 'Meta robots', 'inc2734-wp-seo' ); ?></b><br />
 			<?php
 			$robots         = (array) get_post_meta( $post->ID, 'wp-seo-meta-robots', true );
-			$robots_choices = [
+			$robots_choices = array(
 				'noindex',
 				'nofollow',
-			]
+			)
 			?>
 			<?php foreach ( $robots_choices as $robot ) : ?>
 				<label for="wp-seo-meta-robots-<?php echo esc_attr( $robot ); ?>" style="margin-right: 1em;">
@@ -170,7 +170,7 @@ class Posts {
 		}
 
 		if ( ! isset( $_POST['wp-seo-meta-robots'] ) || ! is_array( $_POST['wp-seo-meta-robots'] ) ) {
-			update_post_meta( $post_id, 'wp-seo-meta-robots', [] );
+			update_post_meta( $post_id, 'wp-seo-meta-robots', array() );
 			return;
 		}
 
