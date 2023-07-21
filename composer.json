@@ -3,7 +3,7 @@
   "description": "A library for SEO of WordPress.",
   "license": "GPL-2.0-or-later",
   "require": {
-    "php": ">=5.6",
+    "php": ">=7.4",
     "inc2734/wp-ogp": "^2.0"
   },
   "require-dev": {
@@ -23,8 +23,8 @@
     }
   },
   "scripts": {
-    "lint": "./vendor/squizlabs/php_codesniffer/bin/phpcs",
-    "format": "./vendor/squizlabs/php_codesniffer/bin/phpcbf"
+    "lint": "phpcs --standard=.phpcs.xml.dist",
+    "format": "phpcbf --standard=.phpcs.xml.dist --report-summary --report-source"
   },
   "config": {
     "allow-plugins": {

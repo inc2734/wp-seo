@@ -41,6 +41,23 @@ jobs:
     - name: Npm install
       run: npm ci
 
+    - name: Get Composer Cache Directory
+      id: composer-cache
+      run: echo "dir=$(composer config cache-files-dir)" >> $GITHUB_OUTPUT
+
+    - name: Cache vendor
+      uses: actions/cache@v3
+      with:
+        path: ${{ steps.composer-cache.outputs.dir }}
+        key: ${{ runner.os }}-composer-${{ hashFiles('**/composer.lock') }}
+        restore-keys: |
+          ${{ runner.os }}-composer-${{ env.cache-name }}-
+          ${{ runner.os }}-composer-
+          ${{ runner.os }}-
+
+    - name: Composer install
+      run: composer install
+
     - name: Npm build
       run: npm run build
 

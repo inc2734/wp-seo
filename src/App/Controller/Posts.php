@@ -13,10 +13,41 @@ class Posts {
 	 * Constructor.
 	 */
 	public function __construct() {
+		add_action( 'init', array( $this, '_register_post_metas' ) );
 		add_action( 'enqueue_block_editor_assets', array( $this, '_enqueue_block_editor_assets' ) );
 		add_action( 'add_meta_boxes', array( $this, '_add_meta_boxes' ) );
 		add_action( 'save_post', array( $this, '_save_meta_description' ) );
 		add_action( 'save_post', array( $this, '_save_meta_robots' ) );
+	}
+
+	public function _register_post_metas() {
+		register_post_meta(
+			'',
+			'wp-seo-meta-description',
+			array(
+				'single'            => true,
+				'type'              => 'string',
+				'show_in_rest'      => true,
+				'sanitize_callback' => 'sanitize_textarea_field',
+			)
+		);
+
+		register_post_meta(
+			'',
+			'wp-seo-meta-robots',
+			array(
+				'single'       => true,
+				'type'         => 'array',
+				'show_in_rest' => array(
+					'schema' => array(
+						'type'  => 'array',
+						'items' => array(
+							'type' => 'string',
+						),
+					),
+				),
+			)
+		);
 	}
 
 	/**
@@ -52,6 +83,11 @@ class Posts {
 	public function _add_meta_boxes( $post_type ) {
 		$post_type_object = get_post_type_object( $post_type );
 		if ( empty( $post_type_object ) || empty( $post_type_object->public ) ) {
+			return;
+		}
+
+		$current_screen = get_current_screen();
+		if ( $current_screen->is_block_editor( true ) ) {
 			return;
 		}
 
