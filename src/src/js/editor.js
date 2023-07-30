@@ -42,8 +42,13 @@ const PluginDocumentSettingPanelDemo = () => {
 					onChange={ ( value ) => {
 						let newRobots = [ ...meta?.[ 'wp-seo-meta-robots' ] ];
 						if ( value ) {
-							newRobots.push( 'noindex' );
-							newRobots = [ ...new Set( newRobots ) ];
+							if ( ! newRobots.includes( 'noindex' ) ) {
+								newRobots.push( 'noindex' );
+							}
+						} else {
+							newRobots = newRobots.filter(
+								( _value ) => 'noindex' !== _value
+							);
 						}
 
 						setMeta( {
@@ -61,8 +66,13 @@ const PluginDocumentSettingPanelDemo = () => {
 					onChange={ ( value ) => {
 						let newRobots = [ ...meta?.[ 'wp-seo-meta-robots' ] ];
 						if ( value ) {
-							newRobots.push( 'nofollow' );
-							newRobots = [ ...new Set( newRobots ) ];
+							if ( ! newRobots.includes( 'nofollow' ) ) {
+								newRobots.push( 'nofollow' );
+							}
+						} else {
+							newRobots = newRobots.filter(
+								( _value ) => 'nofollow' !== _value
+							);
 						}
 
 						setMeta( {
