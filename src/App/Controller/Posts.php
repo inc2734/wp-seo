@@ -87,7 +87,7 @@ class Posts {
 		}
 
 		$current_screen = get_current_screen();
-		if ( $current_screen->is_block_editor( true ) ) {
+		if ( $current_screen->is_block_editor ) {
 			return;
 		}
 
