@@ -9,16 +9,21 @@ import {
 	BaseControl,
 } from '@wordpress/components';
 
-const PluginDocumentSettingPanelDemo = () => {
+const PluginSEOPanel = () => {
 	const postType = useSelect(
 		( select ) => select( 'core/editor' ).getCurrentPostType(),
 		[]
 	);
 
+	const currentPost = useSelect(
+		( select ) => select( 'core/editor' ).getCurrentPost(),
+		[]
+	);
+
 	const [ meta, setMeta ] = useEntityProp( 'postType', postType, 'meta' );
 
-	return (
-		<PluginDocumentSettingPanel name="inc2734-wp-seo" title="SEO">
+	return null != currentPost?.meta?.[ 'wp-seo-meta-description' ] && null != currentPost?.meta?.[ 'wp-seo-meta-robots' ] && (
+		<PluginDocumentSettingPanel name="inc2734-wp-seo-panel" title="SEO">
 			<TextareaControl
 				label="Meta description"
 				value={ meta?.[ 'wp-seo-meta-description' ] }
@@ -86,8 +91,8 @@ const PluginDocumentSettingPanelDemo = () => {
 	);
 };
 
-registerPlugin( 'plugin-document-setting-panel-demo', {
-	render: PluginDocumentSettingPanelDemo,
+registerPlugin( 'inc2734-wp-seo-panel', {
+	render: PluginSEOPanel,
 	icon: 'palmtree',
 } );
 
