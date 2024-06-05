@@ -48,16 +48,46 @@ add_action(
 		}
 
 		$ogp = new \Inc2734\WP_OGP\Bootstrap();
+
+		$og_title       = $ogp->get_title();
+		$og_type        = $ogp->get_type();
+		$og_url         = $ogp->get_url();
+		$og_image       = $ogp->get_image();
+		$og_site_name   = $ogp->get_site_name();
+		$og_description = $ogp->get_description();
+		$og_locale      = $ogp->get_locale();
+		$fb_app_id      = $ogp->get_app_id();
 		?>
-		<meta property="og:title" content="<?php echo esc_attr( strip_tags( $ogp->get_title() ) ); ?>">
-		<meta property="og:type" content="<?php echo esc_attr( $ogp->get_type() ); ?>">
-		<meta property="og:url" content="<?php echo esc_attr( $ogp->get_url() ); ?>">
-		<meta property="og:image" content="<?php echo esc_attr( $ogp->get_image() ); ?>">
-		<meta property="og:site_name" content="<?php echo esc_attr( $ogp->get_site_name() ); ?>">
-		<meta property="og:description" content="<?php echo esc_attr( strip_tags( $ogp->get_description() ) ); ?>">
-		<meta property="og:locale" content="<?php echo esc_attr( $ogp->get_locale() ); ?>">
-		<?php if ( $ogp->get_app_id() ) : ?>
-			<meta property="fb:app_id" content="<?php echo esc_attr( $ogp->get_app_id() ); ?>">
+		<?php if ( $og_title ) : ?>
+			<meta property="og:title" content="<?php echo esc_attr( strip_tags( $og_title ) ); ?>">
+		<?php endif; ?>
+
+		<?php if ( $og_type ) : ?>
+			<meta property="og:type" content="<?php echo esc_attr( $og_type ); ?>">
+		<?php endif; ?>
+
+		<?php if ( $og_url ) : ?>
+			<meta property="og:url" content="<?php echo esc_attr( $og_url ); ?>">
+		<?php endif; ?>
+
+		<?php if ( $og_image ) : ?>
+			<meta property="og:image" content="<?php echo esc_attr( $og_image ); ?>">
+		<?php endif; ?>
+
+		<?php if ( $og_site_name ) : ?>
+			<meta property="og:site_name" content="<?php echo esc_attr( $og_site_name ); ?>">
+		<?php endif; ?>
+
+		<?php if ( $og_description ) : ?>
+			<meta property="og:description" content="<?php echo esc_attr( strip_tags( $og_description ) ); ?>">
+		<?php endif; ?>
+
+		<?php if ( $og_locale ) : ?>
+			<meta property="og:locale" content="<?php echo esc_attr( $og_locale ); ?>">
+		<?php endif; ?>
+
+		<?php if ( $fb_app_id ) : ?>
+			<meta property="fb:app_id" content="<?php echo esc_attr( $fb_app_id ); ?>">
 		<?php endif; ?>
 		<?php
 	},
