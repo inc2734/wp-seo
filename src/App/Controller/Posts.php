@@ -20,6 +20,9 @@ class Posts {
 		add_action( 'save_post', array( $this, '_save_meta_robots' ) );
 	}
 
+	/**
+	 * Register post meta.
+	 */
 	public function _register_post_metas() {
 		$post_types = get_post_types(
 			array(
@@ -76,7 +79,7 @@ class Posts {
 			return;
 		}
 
-		$asset = include( get_template_directory() . '/vendor/inc2734/wp-seo/src/dist/js/editor.asset.php' );
+		$asset = include get_template_directory() . '/vendor/inc2734/wp-seo/src/dist/js/editor.asset.php';
 		wp_enqueue_script(
 			'inc2734-wp-seo@editor',
 			get_template_directory_uri() . '/vendor/inc2734/wp-seo/src/dist/js/editor.js',

@@ -12,7 +12,7 @@
  */
 add_action(
 	'wp_head',
-	function() {
+	function () {
 		$twitter_card = apply_filters( 'inc2734_wp_seo_twitter_card', null );
 		$twitter_site = apply_filters( 'inc2734_wp_seo_twitter_site', null );
 		?>

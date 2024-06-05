@@ -14,7 +14,7 @@ use Inc2734\WP_SEO\Helper;
  */
 add_action(
 	'wp_head',
-	function() {
+	function () {
 		$meta_description = Helper::get_the_description();
 		if ( ! $meta_description ) {
 			return;

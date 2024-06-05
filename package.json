@@ -1,36 +1,39 @@
 {
-  "engines": {
-    "node": ">=14.0.0 < 15",
-    "npm": ">=6.9.0 <7"
-  },
-  "author": "inc2734",
-  "license": "GPL-2.0+",
-  "devDependencies": {
-    "@wordpress/scripts": "26.9.0",
-    "@wordpress/env": "^8.4.0",
-    "npm-run-all": "^4.1.5",
-    "rimraf": "^5.0.1"
-  },
-  "scripts": {
-    "wp-env": "wp-env",
-    "start": "wp-env start",
-    "stop": "wp-env stop",
-    "cli": "wp-env run cli",
-    "wp": "wp-env run cli wp",
-    "composer": "wp-env run --env-cwd=\"wp-content/plugins/wp-seo\" cli composer",
-    "pretest": "wp-env start && npm run composer install -- --no-interaction",
-    "test:lint:js": "wp-scripts lint-js src/src/js",
-    "test:lint:php": "npm run composer lint",
-    "test:lint": "run-s test:lint:*",
-    "test:unit:php": "wp-env start && wp-env run --env-cwd=\"wp-content/plugins/wp-seo\" tests-wordpress vendor/bin/phpunit -c .phpunit.xml.dist --verbose",
-    "test:unit": "run-s test:unit:*",
-    "format:js": "wp-scripts format src/src/js",
-    "format:php": "npm run wp-env start && npm run composer format",
+	"engines": {
+		"node": ">=20.10.0",
+		"npm": ">=10.2.3"
+	},
+	"volta": {
+		"node": "20.11.1"
+	},
+	"author": "inc2734",
+	"license": "GPL-2.0+",
+	"devDependencies": {
+		"@wordpress/scripts": "28.0.0",
+		"@wordpress/env": "^10.0.0",
+		"npm-run-all": "^4.1.5",
+		"rimraf": "^5.0.7"
+	},
+	"scripts": {
+		"wp-env": "wp-env",
+		"start": "wp-env start",
+		"stop": "wp-env stop",
+		"cli": "wp-env run cli --env-cwd=\"wp-content/plugins/wp-seo\"",
+		"wp": "wp-env run cli --env-cwd=\"wp-content/plugins/wp-seo\" wp",
+		"composer": "wp-env run --env-cwd=\"wp-content/plugins/wp-seo\" cli composer",
+		"pretest": "wp-env start && npm run composer install -- --no-interaction",
+		"test:lint:js": "wp-scripts lint-js src/src/js",
+		"test:lint:php": "wp-env start && npm run composer lint",
+		"test:lint": "run-s test:lint:*",
+		"test:unit:php": "wp-env start && wp-env run --env-cwd=\"wp-content/plugins/wp-seo\" tests-wordpress -- vendor/bin/phpunit -c .phpunit.xml.dist --verbose",
+		"test:unit": "run-s test:unit:*",
+		"test": "run-s test:*",
+		"format:js": "wp-scripts format src/src/js",
+		"format:php": "npm run wp-env start && npm run composer format",
 		"format": "run-p format:*",
-    "test": "run-s test:*",
-    "js:editor": "wp-scripts build src/src/js/editor.js --output-path src/dist/js",
-    "js": "npm run clean:js && npm-run-all -p js:*",
-    "build": "npm-run-all -p format js",
-    "clean:js": "rimraf dist/js"
-  }
+		"js:editor": "wp-scripts build src/src/js/editor.js --output-path src/dist/js",
+		"js": "npm run clean:js && run-p js:*",
+		"build": "run-p format js",
+		"clean:js": "rimraf src/dist/js"
+	}
 }

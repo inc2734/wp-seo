@@ -15,7 +15,7 @@ use Inc2734\WP_SEO\Helper;
  */
 add_filter(
 	'inc2734_wp_ogp_description',
-	function( $description ) {
+	function ( $description ) {
 		$meta_description = Helper::get_the_description();
 		return $meta_description ? $meta_description : $description;
 	}
@@ -28,7 +28,7 @@ add_filter(
  */
 add_filter(
 	'inc2734_wp_ogp_image',
-	function( $og_image ) {
+	function ( $og_image ) {
 		return $og_image
 			? $og_image
 			: apply_filters( 'inc2734_wp_seo_defult_ogp_image_url', null );
@@ -42,7 +42,7 @@ add_filter(
  */
 add_action(
 	'wp_head',
-	function() {
+	function () {
 		if ( ! apply_filters( 'inc2734_wp_seo_ogp', false ) ) {
 			return;
 		}
@@ -59,7 +59,7 @@ add_action(
 		$fb_app_id      = $ogp->get_app_id();
 		?>
 		<?php if ( $og_title ) : ?>
-			<meta property="og:title" content="<?php echo esc_attr( strip_tags( $og_title ) ); ?>">
+			<meta property="og:title" content="<?php echo esc_attr( wp_strip_all_tags( $og_title ) ); ?>">
 		<?php endif; ?>
 
 		<?php if ( $og_type ) : ?>
@@ -79,7 +79,7 @@ add_action(
 		<?php endif; ?>
 
 		<?php if ( $og_description ) : ?>
-			<meta property="og:description" content="<?php echo esc_attr( strip_tags( $og_description ) ); ?>">
+			<meta property="og:description" content="<?php echo esc_attr( wp_strip_all_tags( $og_description ) ); ?>">
 		<?php endif; ?>
 
 		<?php if ( $og_locale ) : ?>

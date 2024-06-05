@@ -12,7 +12,7 @@
  */
 add_action(
 	'wp_head',
-	function() {
+	function () {
 		if ( ! apply_filters( 'inc2734_wp_seo_use_json_ld', false ) ) {
 			return;
 		}
@@ -97,7 +97,7 @@ add_action(
 
 		?>
 		<script type="application/ld+json">
-			<?php echo json_encode( $json_ld ); ?>
+			<?php echo wp_json_encode( $json_ld ); ?>
 		</script>
 		<?php
 	}

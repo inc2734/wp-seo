@@ -12,7 +12,7 @@
  */
 add_action(
 	'wp_enqueue_scripts',
-	function() {
+	function () {
 		$tracking_id = apply_filters( 'inc2734_wp_seo_google_analytics_tracking_id', null );
 		if ( ! $tracking_id ) {
 			return;

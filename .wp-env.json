@@ -1,9 +1,9 @@
 {
-  "core": null,
-  "mappings": {
-    "wp-content/plugins/wp-seo": "./"
-  },
-  "config": {
-    "WP_DEBUG": true
-  }
+	"core": null,
+	"mappings": {
+		"wp-content/plugins/wp-seo": "./"
+	},
+	"config": {
+		"WP_DEBUG": true
+	}
 }

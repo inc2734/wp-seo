@@ -14,7 +14,7 @@ use Inc2734\WP_SEO\Helper;
  */
 add_action(
 	'wp_head',
-	function() {
+	function () {
 		$thumbnail = Helper::get_the_thumbnail();
 		if ( ! $thumbnail ) {
 			return;

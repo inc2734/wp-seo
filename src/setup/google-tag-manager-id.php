@@ -12,7 +12,7 @@
  */
 add_action(
 	'wp_head',
-	function() {
+	function () {
 		$tag_manager_id = apply_filters( 'inc2734_wp_seo_google_tag_manager_id', null );
 		if ( ! $tag_manager_id ) {
 			return;

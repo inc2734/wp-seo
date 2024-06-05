@@ -12,7 +12,7 @@
  */
 add_filter(
 	'wp_robots',
-	function( $robots ) {
+	function ( $robots ) {
 		$new_robots = array();
 
 		if ( is_singular() && ! is_front_page() ) {

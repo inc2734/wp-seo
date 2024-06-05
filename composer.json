@@ -1,34 +1,35 @@
 {
-  "name": "inc2734/wp-seo",
-  "description": "A library for SEO of WordPress.",
-  "license": "GPL-2.0-or-later",
-  "require": {
-    "php": ">=7.4",
-    "inc2734/wp-ogp": "^2.0"
-  },
-  "require-dev": {
-    "wp-coding-standards/wpcs": "^2.3",
-    "dealerdirect/phpcodesniffer-composer-installer": "^1.0",
-    "yoast/phpunit-polyfills": "^1.0"
-  },
-  "authors": [
-    {
-      "name": "Takashi Kitajima",
-      "email": "inc@2inc.org"
-    }
-  ],
-  "autoload": {
-    "psr-4" : {
-      "Inc2734\\WP_SEO\\" : "src"
-    }
-  },
-  "scripts": {
-    "lint": "phpcs --standard=.phpcs.xml.dist",
-    "format": "phpcbf --standard=.phpcs.xml.dist --report-summary --report-source"
-  },
-  "config": {
-    "allow-plugins": {
-      "dealerdirect/phpcodesniffer-composer-installer": true
-    }
-  }
+	"name": "inc2734/wp-seo",
+	"description": "A library for SEO of WordPress.",
+	"license": "GPL-2.0-or-later",
+	"require": {
+		"php": ">=7.4",
+		"inc2734/wp-ogp": "^2.0"
+	},
+	"require-dev": {
+		"dealerdirect/phpcodesniffer-composer-installer": "^1.0",
+		"wp-coding-standards/wpcs": "^3.1",
+		"phpcompatibility/phpcompatibility-wp": "*",
+		"yoast/phpunit-polyfills": "^2.0"
+	},
+	"authors": [
+		{
+			"name": "Takashi Kitajima",
+			"email": "inc@2inc.org"
+		}
+	],
+	"autoload": {
+		"psr-4" : {
+			"Inc2734\\WP_SEO\\" : "src"
+		}
+	},
+	"scripts": {
+		"format": "phpcbf --standard=.phpcs.xml.dist --report-summary --report-source",
+		"lint": "phpcs --standard=.phpcs.xml.dist"
+	},
+	"config": {
+		"allow-plugins": {
+			"dealerdirect/phpcodesniffer-composer-installer": true
+		}
+	}
 }
