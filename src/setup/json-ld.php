@@ -70,6 +70,11 @@ add_action(
 					'dateModified'     => get_the_modified_time( 'c' ),
 					'description'      => $ogp->get_description(),
 				);
+
+				$author_url = get_the_author_meta( 'url' );
+				if ( $author_url ) {
+					$json_ld['author']['url'] = $author_url;
+				}
 			}
 
 			wp_reset_postdata();
