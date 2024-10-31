@@ -1,13 +1,13 @@
 import { registerPlugin } from '@wordpress/plugins';
 import { PluginDocumentSettingPanel } from '@wordpress/editor';
 import { useEntityProp } from '@wordpress/core-data';
-import { __experimentalVStack as VStack } from '@wordpress/components';
 import { useSelect } from '@wordpress/data';
 
 import {
 	TextareaControl,
 	ToggleControl,
 	BaseControl,
+	__experimentalVStack as VStack,
 } from '@wordpress/components';
 
 const PluginSEOPanel = () => {
