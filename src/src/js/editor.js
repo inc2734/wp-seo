@@ -27,6 +27,7 @@ const PluginSEOPanel = () => {
 		null != currentPost?.meta?.[ 'wp-seo-meta-robots' ] && (
 			<PluginDocumentSettingPanel name="inc2734-wp-seo-panel" title="SEO">
 				<TextareaControl
+					__nextHasNoMarginBottom
 					label="Meta description"
 					value={ meta?.[ 'wp-seo-meta-description' ] }
 					onChange={ ( value ) =>
@@ -41,10 +42,12 @@ const PluginSEOPanel = () => {
 				/>
 
 				<BaseControl
+					__nextHasNoMarginBottom
 					label="Meta robots"
 					id="inc2734-wp-seo-meta-robots"
 				>
 					<ToggleControl
+						__nextHasNoMarginBottom
 						label="noindex"
 						checked={ meta?.[ 'wp-seo-meta-robots' ].includes(
 							'noindex'
@@ -71,6 +74,7 @@ const PluginSEOPanel = () => {
 					/>
 
 					<ToggleControl
+						__nextHasNoMarginBottom
 						label="nofollow"
 						checked={ meta?.[ 'wp-seo-meta-robots' ].includes(
 							'nofollow'
