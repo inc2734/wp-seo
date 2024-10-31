@@ -5,5 +5,6 @@ module.exports = {
 	rules: {
 		...defaultConfig.rules,
 		'eqeqeq': 'off',
+		'@wordpress/no-unsafe-wp-apis': 'off',
 	},
 };
