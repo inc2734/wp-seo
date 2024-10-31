@@ -1,6 +1,7 @@
 import { registerPlugin } from '@wordpress/plugins';
 import { PluginDocumentSettingPanel } from '@wordpress/editor';
 import { useEntityProp } from '@wordpress/core-data';
+import { __experimentalVStack as VStack } from '@wordpress/components';
 import { useSelect } from '@wordpress/data';
 
 import {
@@ -26,80 +27,88 @@ const PluginSEOPanel = () => {
 		null != currentPost?.meta?.[ 'wp-seo-meta-description' ] &&
 		null != currentPost?.meta?.[ 'wp-seo-meta-robots' ] && (
 			<PluginDocumentSettingPanel name="inc2734-wp-seo-panel" title="SEO">
-				<TextareaControl
-					__nextHasNoMarginBottom
-					label="Meta description"
-					value={ meta?.[ 'wp-seo-meta-description' ] }
-					onChange={ ( value ) =>
-						setMeta( {
-							...meta,
-							'wp-seo-meta-description': value.replace(
-								/\r?\n/g,
-								''
-							),
-						} )
-					}
-				/>
-
-				<BaseControl
-					__nextHasNoMarginBottom
-					label="Meta robots"
-					id="inc2734-wp-seo-meta-robots"
-				>
-					<ToggleControl
+				<VStack spacing="16px">
+					<TextareaControl
 						__nextHasNoMarginBottom
-						label="noindex"
-						checked={ meta?.[ 'wp-seo-meta-robots' ].includes(
-							'noindex'
-						) }
-						onChange={ ( value ) => {
-							let newRobots = [
-								...meta?.[ 'wp-seo-meta-robots' ],
-							];
-							if ( value ) {
-								if ( ! newRobots.includes( 'noindex' ) ) {
-									newRobots.push( 'noindex' );
-								}
-							} else {
-								newRobots = newRobots.filter(
-									( _value ) => 'noindex' !== _value
-								);
-							}
-
+						label="Meta description"
+						value={ meta?.[ 'wp-seo-meta-description' ] }
+						onChange={ ( value ) =>
 							setMeta( {
 								...meta,
-								'wp-seo-meta-robots': newRobots,
-							} );
-						} }
+								'wp-seo-meta-description': value.replace(
+									/\r?\n/g,
+									''
+								),
+							} )
+						}
 					/>
 
-					<ToggleControl
+					<BaseControl
 						__nextHasNoMarginBottom
-						label="nofollow"
-						checked={ meta?.[ 'wp-seo-meta-robots' ].includes(
-							'nofollow'
-						) }
-						onChange={ ( value ) => {
-							let newRobots = [
-								...meta?.[ 'wp-seo-meta-robots' ],
-							];
-							if ( value ) {
-								if ( ! newRobots.includes( 'nofollow' ) ) {
-									newRobots.push( 'nofollow' );
-								}
-							} else {
-								newRobots = newRobots.filter(
-									( _value ) => 'nofollow' !== _value
-								);
-							}
+						label="Meta robots"
+						id="inc2734-wp-seo-meta-robots"
+					>
+						<VStack>
+							<ToggleControl
+								__nextHasNoMarginBottom
+								label="noindex"
+								checked={ meta?.[
+									'wp-seo-meta-robots'
+								].includes( 'noindex' ) }
+								onChange={ ( value ) => {
+									let newRobots = [
+										...meta?.[ 'wp-seo-meta-robots' ],
+									];
+									if ( value ) {
+										if (
+											! newRobots.includes( 'noindex' )
+										) {
+											newRobots.push( 'noindex' );
+										}
+									} else {
+										newRobots = newRobots.filter(
+											( _value ) => 'noindex' !== _value
+										);
+									}
 
-							setMeta( {
-								...meta,
-								'wp-seo-meta-robots': newRobots,
-							} );
-						} }
-					/>
-				</BaseControl>
+									setMeta( {
+										...meta,
+										'wp-seo-meta-robots': newRobots,
+									} );
+								} }
+							/>
+
+							<ToggleControl
+								__nextHasNoMarginBottom
+								label="nofollow"
+								checked={ meta?.[
+									'wp-seo-meta-robots'
+								].includes( 'nofollow' ) }
+								onChange={ ( value ) => {
+									let newRobots = [
+										...meta?.[ 'wp-seo-meta-robots' ],
+									];
+									if ( value ) {
+										if (
+											! newRobots.includes( 'nofollow' )
+										) {
+											newRobots.push( 'nofollow' );
+										}
+									} else {
+										newRobots = newRobots.filter(
+											( _value ) => 'nofollow' !== _value
+										);
+									}
+
+									setMeta( {
+										...meta,
+										'wp-seo-meta-robots': newRobots,
+									} );
+								} }
+							/>
+						</VStack>
+					</BaseControl>
+				</VStack>
 			</PluginDocumentSettingPanel>
 		)
 	);
