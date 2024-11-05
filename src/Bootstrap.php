@@ -15,7 +15,12 @@ class Bootstrap {
 	 * Constructor.
 	 */
 	public function __construct() {
-		load_textdomain( 'inc2734-wp-seo', __DIR__ . '/languages/' . get_locale() . '.mo' );
+		add_action(
+			'init',
+			function () {
+				load_textdomain( 'inc2734-wp-seo', __DIR__ . '/languages/' . get_locale() . '.mo' );
+			}
+		);
 
 		include_once __DIR__ . '/setup/google-analytics-tracking-id.php';
 		include_once __DIR__ . '/setup/google-site-verification.php';
