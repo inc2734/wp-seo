@@ -5,4 +5,6 @@
 .phpunit.xml.dist export-ignore
 .travis.yml export-ignore
 .wp-env.json export-ignore
+.wp-env.tests.json export-ignore
+eslint.config.cjs export-ignore
 tests export-ignore

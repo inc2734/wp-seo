@@ -1,0 +1,11 @@
+{
+	"core": null,
+	"port": 8889,
+	"testsEnvironment": false,
+	"mappings": {
+		"wp-content/plugins/wp-seo": "./"
+	},
+	"config": {
+		"WP_DEBUG": true
+	}
+}
