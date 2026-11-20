@@ -16,22 +16,20 @@ const PluginSEOPanel = () => {
 		[]
 	);
 
-	const currentPost = useSelect(
-		( select ) => select( 'core/editor' ).getCurrentPost(),
-		[]
-	);
-
 	const [ meta, setMeta ] = useEntityProp( 'postType', postType, 'meta' );
 
+	const description = meta?.[ 'wp-seo-meta-description' ];
+	const robots = meta?.[ 'wp-seo-meta-robots' ];
+
 	return (
-		null != currentPost?.meta?.[ 'wp-seo-meta-description' ] &&
-		null != currentPost?.meta?.[ 'wp-seo-meta-robots' ] && (
+		typeof description === 'string' &&
+		Array.isArray( robots ) && (
 			<PluginDocumentSettingPanel name="inc2734-wp-seo-panel" title="SEO">
 				<VStack spacing="16px">
 					<TextareaControl
 						__nextHasNoMarginBottom
 						label="Meta description"
-						value={ meta?.[ 'wp-seo-meta-description' ] }
+						value={ description }
 						onChange={ ( value ) =>
 							setMeta( {
 								...meta,
@@ -52,13 +50,9 @@ const PluginSEOPanel = () => {
 							<ToggleControl
 								__nextHasNoMarginBottom
 								label="noindex"
-								checked={ meta?.[
-									'wp-seo-meta-robots'
-								].includes( 'noindex' ) }
+								checked={ robots.includes( 'noindex' ) }
 								onChange={ ( value ) => {
-									let newRobots = [
-										...meta?.[ 'wp-seo-meta-robots' ],
-									];
+									let newRobots = [ ...robots ];
 									if ( value ) {
 										if (
 											! newRobots.includes( 'noindex' )
@@ -81,13 +75,9 @@ const PluginSEOPanel = () => {
 							<ToggleControl
 								__nextHasNoMarginBottom
 								label="nofollow"
-								checked={ meta?.[
-									'wp-seo-meta-robots'
-								].includes( 'nofollow' ) }
+								checked={ robots.includes( 'nofollow' ) }
 								onChange={ ( value ) => {
-									let newRobots = [
-										...meta?.[ 'wp-seo-meta-robots' ],
-									];
+									let newRobots = [ ...robots ];
 									if ( value ) {
 										if (
 											! newRobots.includes( 'nofollow' )

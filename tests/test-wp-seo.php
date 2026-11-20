@@ -59,6 +59,46 @@ class Inc2734_WP_SEO_Test extends WP_UnitTestCase {
 		$this->assertSame( array( 'noindex', 'nofollow' ), $metadata['wp-seo-meta-robots'] );
 	}
 
+	public function test_only_exposes_revisioned_seo_metadata_on_rest_revisions() {
+		if ( ! function_exists( 'wp_post_revision_meta_keys' ) ) {
+			$this->markTestSkipped( 'Revisioned post metadata requires WordPress 6.4 or later.' );
+		}
+
+		$user_id = self::factory()->user->create( array( 'role' => 'editor' ) );
+		$post_id = self::factory()->post->create( array( 'post_author' => $user_id ) );
+		wp_set_current_user( $user_id );
+		$controller = new \Inc2734\WP_SEO\App\Controller\Posts();
+		$controller->_register_post_metas();
+
+		$revision_id = _wp_put_post_revision( $post_id );
+		$this->assertIsInt( $revision_id );
+		$request = new WP_REST_Request( 'GET', '/wp/v2/posts/' . $post_id . '/revisions/' . $revision_id );
+		$request->set_param( 'context', 'edit' );
+
+		$response = rest_do_request( $request );
+		$this->assertSame( 200, $response->get_status() );
+		$metadata = (array) $response->get_data()['meta'];
+		$this->assertArrayNotHasKey( 'wp-seo-meta-description', $metadata );
+		$this->assertArrayNotHasKey( 'wp-seo-meta-robots', $metadata );
+
+		$revisioned_meta_keys = static function ( $keys ) {
+			$keys[] = 'wp-seo-meta-description';
+			return $keys;
+		};
+		add_filter( 'wp_post_revision_meta_keys', $revisioned_meta_keys );
+
+		try {
+			update_metadata( 'post', $revision_id, 'wp-seo-meta-description', 'Revision description.' );
+			$response = rest_do_request( $request );
+			$this->assertSame( 200, $response->get_status() );
+			$metadata = $response->get_data()['meta'];
+			$this->assertSame( 'Revision description.', $metadata['wp-seo-meta-description'] );
+			$this->assertArrayNotHasKey( 'wp-seo-meta-robots', $metadata );
+		} finally {
+			remove_filter( 'wp_post_revision_meta_keys', $revisioned_meta_keys );
+		}
+	}
+
 	public function test_outputs_an_escaped_meta_description() {
 		$post_id     = self::factory()->post->create();
 		$description = 'Description with "quotes" & <markup>.';
